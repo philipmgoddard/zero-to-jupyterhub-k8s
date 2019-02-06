@@ -50,9 +50,19 @@ spec:
           persistentVolumeClaim:
             claimName: hub-db-dir
         {{- end }}
-      {{- if .Values.rbac.enabled }}
-      serviceAccountName: hub
-      {{- end }}
+      ########################
+      # PG REMOVE
+      ########################
+      #{{- if .Values.rbac.enabled }}
+      #serviceAccountName: hub
+      #{{- end }}
+      ########################
+      ########################
+      # PG ADD
+      ########################
+      serviceAccountName: spark-admin
+      automountServiceAccountToken: true
+      ########################
       securityContext:
         runAsUser: {{ .Values.hub.uid }}
         fsGroup: {{ .Values.hub.fsGid }}
